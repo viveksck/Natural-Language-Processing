@@ -5,15 +5,15 @@ NUM=10000
 for freqb in $FREQB
 do
 freqw=$((100-$freqb))
-mkdir -p $WORKING/$freqb
-cp S1.gr $WORKING/$freqb
-cp S2.gr $WORKING/$freqb
-cp Vocab.gr $WORKING/$freqb
+mkdir -p $WORKING/$freqw
+cp S1.gr $WORKING/$freqw
+cp S2.gr $WORKING/$freqw
+cp Vocab.gr $WORKING/$freqw
 for contexto in $CONTEXTO
 do
-echo $freqb $contexto
 contextnew=$((100-$contexto))
-python ./skeleton.py --freqb $freqb --freqw $freqw --contexto $contexto --contextnew $contextnew > $WORKING/$freqb/$contexto.gr
-java -jar pcfg.jar generate -n $NUM $WORKING/$freqb/S1.gr $WORKING/$freqb/S2.gr $WORKING/$freqb/Vocab.gr $WORKING/$freqb/$contexto.gr > $WORKING/$freqb/$contexto.ngrams
+echo $freqw $contextnew
+python ./skeleton.py --freqb $freqb --freqw $freqw --contexto $contexto --contextnew $contextnew > $WORKING/$freqw/$contextnew.gr
+java -jar pcfg.jar generate -n $NUM $WORKING/$freqw/S1.gr $WORKING/$freqw/S2.gr $WORKING/$freqw/Vocab.gr $WORKING/$freqw/$contextnew.gr > $WORKING/$freqw/$contextnew.ngrams
 done
 done
