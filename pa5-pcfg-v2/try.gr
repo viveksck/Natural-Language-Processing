@@ -1,0 +1,6 @@
+# The start symbol is START.
+# These two rules are required; choose their weights carefully!
+90	START	S1
+10	START	M2
+50	M2	happy and gay mood
+50	M2	lesbian and gay rights
